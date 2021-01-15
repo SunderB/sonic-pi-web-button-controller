@@ -1,34 +1,18 @@
 {
   "name": "sb-atom-sonic-pi",
   "main": "./lib/main",
-  "version": "1.0.0-beta.3-dev",
-  "description": "Sonic Pi Atom integration. Based on rkh/atom-sonic.",
+  "version": "0.0.1",
+  "description": "Sonic Pi Sample Board",
   "keywords": [
     "sonic-pi",
     "music",
     "live-coding"
   ],
-  "providedServices": {
-    "autocomplete.provider": {
-      "versions": {
-        "4.0.0": "provide"
-      }
-    }
-  },
-  "consumedServices": {
-    "tool-bar": {
-      "versions": {
-        "^0 || ^1": "consumeToolBar"
-      }
-    }
-  },
-  "repository": "https://github.com/sunderb/sb-atom-sonic-pi",
+  "repository": "https://github.com/SunderB/sonic-pi-sample-board",
   "license": "MIT",
-  "engines": {
-    "atom": ">=1.0.0 <2.0.0"
-  },
   "dependencies": {
     "jsonfile": "^6.0.1",
-    "node-osc": "^1.2.0"
+    "node-osc": "^1.2.0",
+    "socket.io": "^3.1.0"
   }
 }

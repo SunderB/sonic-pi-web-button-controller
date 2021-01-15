@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <script src="/socket.io/socket.io.js"></script>
+
+  <head>
+    <title>Sonic Pi Sample Board</title>
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+    <script>
+      const socket = io();
+      socket.on("connect", () => {
+        console.log("Connected to server");
+        console.log("Connection ID: " + socket.id);
+      });
+
+
+      socket.on("disconnect", () => {
+        console.log("Disconnected from server");
+      });
+
+      function button_press() {
+        console.log("button pressed");
+        socket.emit("run-code", "play :c");
+      }
+
+    </script>
+
+    <button type="button" name="sample_button" onclick="button_press()"></button>
+  </body>
+</html>
