@@ -5,6 +5,7 @@
   <head>
     <title>Sonic Pi Sample Board</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/html/main.css" type="text/css">
   </head>
 
   <body>
@@ -20,13 +21,32 @@
         console.log("Disconnected from server");
       });
 
-      function button_press() {
+      function button_press(id) {
         console.log("button pressed");
-        socket.emit("run-code", "play :c");
+        socket.emit("button_pressed", id);
       }
 
     </script>
+    <div id="button_pad">
+      <div class="grid-container">
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(0)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(1)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(2)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(3)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(4)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(5)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(6)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(7)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(8)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(9)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(10)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(11)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(12)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(13)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(14)"></button></div>
+        <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(15)"></button></div>
+      </div>
+    </div>
 
-    <button type="button" name="sample_button" onclick="button_press()"></button>
   </body>
 </html>
