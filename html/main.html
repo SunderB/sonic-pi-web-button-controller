@@ -11,19 +11,64 @@
   <body>
     <script>
       const socket = io();
+      var settings = null;
+
       socket.on("connect", () => {
         console.log("Connected to server");
         console.log("Connection ID: " + socket.id);
       });
 
-
       socket.on("disconnect", () => {
         console.log("Disconnected from server");
+      });
+
+      socket.on("set_settings", (recieved_settings) => {
+        console.log("Settings recieved: " + recieved_settings);
+        settings = recieved_settings;
+        console.log(recieved_settings)
+
+        var commands = document.getElementById("button_settings").getElementsByClassName("code_input");
+        for (var i=0; i < commands.length; i++) {
+            commands[i].removeAttribute("disabled");
+            commands[i].value = settings["commands"][String(i)];
+
+            if (settings["allow_online_command_modification"] != true) {
+              commands[i].setAttribute("disabled", "true");
+            }
+        }
+
       });
 
       function button_press(id) {
         console.log("button pressed");
         socket.emit("button_pressed", id);
+      }
+
+      function update_command(id) {
+        if (settings) {
+          if (settings[""])
+          console.log("button pressed");
+          settings[""]
+          socket.emit("button_pressed", id);
+        }
+      }
+
+      function settings_modified() {
+        document.getElementById("button-apply_settings").removeAttribute("disabled");
+      }
+
+      function apply_settings() {
+        //console.log("Settings recieved: " + recieved_settings);
+        //settings = recieved_settings;
+        if (settings["allow_online_command_modification"]) {
+          var commands = document.getElementById("button_settings").getElementsByClassName("code_input");
+          for (var i=0; i < commands.length; i++) {
+            settings["commands"][String(i)] = commands[i].value;
+          }
+
+          socket.emit("set_settings", settings);
+          document.getElementById("button-apply_settings").setAttribute("disabled", "true");
+        }
       }
 
     </script>
@@ -46,6 +91,30 @@
         <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(14)"></button></div>
         <div class="grid-item"><button type="button" name="sample_button" onclick="button_press(15)"></button></div>
       </div>
+    </div>
+
+    <div id="button_settings">
+      <ol>
+        <li><input class="code_input" id="button_0_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_1_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_2_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_3_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_4_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_5_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_6_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_7_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_8_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_9_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_10_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_11_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_12_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_13_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_14_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+        <li><input class="code_input" id="button_15_cmd" type="text" placeholder="Insert command here..." oninput="settings_modified()"></input></li>
+
+
+      </ol>
+      <button id="button-apply_settings" disabled="true" onclick="apply_settings()">Apply settings</button>
     </div>
 
   </body>

@@ -49,4 +49,11 @@
   border: 5px solid rgb(255, 255, 255);
 }
 
-.grid-item button &
+.code_input {
+  font-family: monospace;
+  min-width: 300px;
+}
+
+/* .code_input input * {
+  font-family: monospace;
+} */
